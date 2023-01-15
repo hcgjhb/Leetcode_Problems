@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int mostWordsFound(vector<string>& sentences) {
+        int maxi=0;
+        for(int i=0;i<sentences.size();i++)
+        {
+            int p=0;
+            int count=0;
+            while(p!=sentences[i].length())
+            {
+                if(sentences[i][p]==' ' && sentences[i][p]!='\0')
+                    count++;
+                p++;
+            }
+            if(count+1>maxi)
+                maxi=count+1;
+        }
+        return maxi;
+    }
+};
