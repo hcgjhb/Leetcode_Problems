@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+#include<vector>
+#include<unordered_map>
+using namespace std;
+
+class Pair{
+	public:
+		int index=0;
+		vector<int> *v = new vector<int>();
+	};
+
+using namespace std;
+int main()
+{
+	int n;
+	cin>>n;
+	
+	unordered_map<int, Pair> ourmap;
+	
+	int a[n];
+	int b[n];
+	for(int i=0;i<n;i++)
+		cin>>a[i];
+	for(int i=0;i<n;i++)
+		cin>>b[i];
+	for(int i=0;i<n;i++)
+	{
+		if(ourmap.count(a[i])==1)
+		{
+			Pair p = ourmap[a[i]];
+			p.v->push_back(i);
+		}
+		else{
+			Pair p;
+			p.v->push_back(i);
+			ourmap[a[i]]=p;
+		}
+	}
+	int *ans = new int[n];
+	for(int i=0;i<n;i++)
+	{
+		Pair k = ourmap[b[i]];
+		ans[i]=k.v->at(k.index);
+		k.v->erase(k.v->begin());
+		
+	}
+	for(int i=0;i<n;i++)
+	{
+		cout<<ans[i]<<" ";
+	}
+}
