@@ -1,0 +1,16 @@
+vector<int> twoOutOfThree(vector<int> &nums1, vector<int> &nums2, vector<int> &nums3)
+{
+  set<int> a, b, c;
+  for(auto x: nums1)  a.insert(x);
+  for(auto x: nums1)  b.insert(x);
+  for(auto x: nums1)  c.insert(x);
+  unordered_map<int, int> ans;
+  for(auto x: a)  ans[x]++;
+  for(auto x: b)  ans[x]++;
+  for(auto x: c)  ans[x]++;
+  vector<int> result;
+  for(auto x: ans) {
+    if(x.second > 1) result.push_back(x.first); 
+  }
+  return result;
+}
