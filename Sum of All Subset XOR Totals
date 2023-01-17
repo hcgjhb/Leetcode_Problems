@@ -1,0 +1,21 @@
+class Solution {
+public:
+    
+    int allsubs(vector<int>& nums, int level, int XOR)
+    {
+        if(level==nums.size())
+        {
+            return XOR;
+        }
+
+        //include
+        int inc = allsubs(nums, level+1, XOR^nums[level]);
+        //exclude
+        int exc = allsubs(nums, level+1, XOR);
+        return inc+exc;
+    }
+
+    int subsetXORSum(vector<int>& nums) {
+        return allsubs(nums, 0, 0);
+    }
+};
