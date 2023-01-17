@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int largestAltitude(vector<int>& gain) {
+        vector<int> altitude;
+        altitude.push_back(0);
+        for(int i=1;i<=gain.size();i++)
+        {
+            altitude.push_back(gain[i-1]+altitude[i-1]);
+        }
+        sort(altitude.begin(), altitude.end());
+        return altitude[gain.size()];
+    }
+};
