@@ -1,0 +1,68 @@
+class Solution {
+public:
+    int numRookCaptures(vector<vector<char>>& board) {
+        int count=0;
+        //getting the coordinates of the rook
+        int x,y;
+        for(int i=0;i<8;i++)
+        {
+            int flag=0;
+            for(int j=0;j<8;j++)
+            {
+                if(board[i][j]=='R')
+                {
+                    x=i; y=j;
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==1)
+                break;
+        }
+        //upper position
+        for(int i=x;i>=0;i--)
+        {
+            if(board[i][y]=='p')
+            {
+                count++;
+                break;
+            }
+            if(board[i][y]=='B')
+                break;
+        }
+        //lower position
+        for(int i=x;i<8;i++)
+        {
+            if(board[i][y]=='p')
+            {
+                count++;
+                break;
+            }
+            if(board[i][y]=='B')
+                break;
+        }
+        //right position
+        for(int i=y;i<8;i++)
+        {
+            if(board[x][i]=='p')
+            {
+                count++;
+                break;
+            }
+            if(board[x][i]=='B')
+                break;
+        }
+        //left position
+        for(int i=y;i>=0;i--)
+        {
+            if(board[x][i]=='p')
+            {
+                count++;
+                break;
+            }
+            if(board[x][i]=='B')
+                break;
+        }
+        return count;
+    }
+};
