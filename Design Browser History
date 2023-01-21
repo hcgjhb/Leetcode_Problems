@@ -1,0 +1,50 @@
+class BrowserHistory {
+public:
+    vector<string> pages;
+    int current_page;
+    int page_number=0;
+    BrowserHistory(string homepage) {
+        current_page = 0;
+        pages.push_back(homepage);
+        page_number++;
+    }
+    
+    void visit(string url) {
+        if(current_page!=pages.size()-1)
+        {
+            while(current_page!=pages.size()-1)
+                pages.pop_back();
+        }
+        current_page++;
+        pages.push_back(url);
+        page_number++;
+    }
+    
+    string back(int steps) {
+        if(steps>current_page)
+        {
+            current_page=0;
+            return pages[current_page];
+        }
+        current_page-=steps;
+        return pages[current_page];
+    }
+    
+    string forward(int steps) {
+        if(steps+current_page>=pages.size())
+        {
+            current_page=pages.size()-1;
+            return pages[current_page];
+        }
+        current_page+=steps;
+        return pages[current_page];
+    }
+};
+
+/**
+ * Your BrowserHistory object will be instantiated and called as such:
+ * BrowserHistory* obj = new BrowserHistory(homepage);
+ * obj->visit(url);
+ * string param_2 = obj->back(steps);
+ * string param_3 = obj->forward(steps);
+ */
