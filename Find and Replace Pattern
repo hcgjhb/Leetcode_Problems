@@ -1,0 +1,46 @@
+class Solution {
+public:
+
+    bool matches(string word, long long b)
+    {
+        unordered_map<char, int> map;
+        long long a=0;
+        for(int i=0;i<word.length();i++)
+        {
+            if(map.count(word[i]))
+            {
+                a=a*10 + map[word[i]];
+            }
+            else{
+                map[word[i]]=i;
+                a=a*10+i;
+            }
+        }
+        return a==b;
+    }
+
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+        vector<string> ans;
+        unordered_map<char, int> map;
+        long long a=0;
+        for(int i=0;i<pattern.length();i++)
+        {
+            if(map.count(pattern[i]))
+            {
+                a=a*10 + map[pattern[i]];
+            }
+            else{
+                map[pattern[i]]=i;
+                a=a*10+i;
+            }
+        }
+        for(int i=0;i<words.size();i++)
+        {
+            if(matches(words[i], a))
+            {
+                ans.push_back(words[i]);
+            }
+        }
+        return ans;
+    }
+};
