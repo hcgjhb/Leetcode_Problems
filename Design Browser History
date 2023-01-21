@@ -2,11 +2,9 @@ class BrowserHistory {
 public:
     vector<string> pages;
     int current_page;
-    int page_number=0;
     BrowserHistory(string homepage) {
         current_page = 0;
         pages.push_back(homepage);
-        page_number++;
     }
     
     void visit(string url) {
@@ -17,7 +15,6 @@ public:
         }
         current_page++;
         pages.push_back(url);
-        page_number++;
     }
     
     string back(int steps) {
