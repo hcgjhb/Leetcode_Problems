@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+        unordered_map<int, int> wins, loses;
+        int maxi=INT_MIN;
+        for(int i=0;i<matches.size();i++)
+        {
+            wins[matches[i][0]]++;
+            loses[matches[i][1]]++;
+            maxi = max(maxi, max(matches[i][0], matches[i][1]));
+        }
+        vector<int> win_players, losing_players;
+        for(auto i: loses)
+        {
+            if(i.second==1)
+                losing_players.push_back(i.first);
+        }
+        for(auto i: wins)
+        {
+            if(loses[i.first]==0 && wins.count(i.first))
+                win_players.push_back(i.first);
+        }
+        sort(win_players.begin(), win_players.end());
+        sort(losing_players.begin(), losing_players.end());
+        vector<vector<int>> output;
+        output.push_back(win_players);
+        output.push_back(losing_players);
+        return output;
+    }
+};
