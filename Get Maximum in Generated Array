@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int getMaximumGenerated(int n) {
+        vector<int> ans(n+1);
+        if(n==0)
+            return 0;
+        ans[0]=0;
+        ans[1]=1;
+        int maxi=1;
+        for(int i=1;i<=n;i++)
+        {
+            if(i*2<=n)
+            {
+                ans[i*2]=ans[i];
+                maxi=max(maxi, ans[i*2]);
+            }
+            if(i*2+1<=n)
+            {
+                ans[i*2+1]=ans[i]+ans[i+1];
+                maxi=max(maxi, ans[i*2+1]);
+            }
+        }
+        return maxi;
+    }
+};
