@@ -1,0 +1,31 @@
+class Solution {
+public:
+
+    bool check(string s)
+    {
+        for(char c: s)
+        {
+            if(isdigit(c)==0)
+                return false;
+        }
+        return true;
+    }
+
+    int maximumValue(vector<string>& strs) {
+        int ans=INT_MIN;
+        for(string s: strs)
+        {
+            if(check(s))
+            {
+                int a = stoi(s);
+                ans=max(a, ans);
+            }
+            else
+            {
+                int a = s.length();
+                ans = max(a, ans);
+            }
+        }
+        return ans;
+    }
+};
