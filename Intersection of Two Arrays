@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int, int> map1, map2;
+        vector<int> ans;
+        set<int> s1(nums1.begin(), nums1.end());
+        set<int> s2(nums2.begin(), nums2.end());
+        set<int>::iterator itr1;
+        set<int>::iterator itr2;
+        for(itr1=s1.begin();itr1!=s1.end();itr1++)
+        {
+            map1[*itr1]++;
+        }
+        for(itr2=s2.begin();itr2!=s2.end();itr2++)
+        {
+            map2[*itr2]++;
+        }
+        for(itr1=s1.begin();itr1!=s1.end();itr1++)
+        {
+            if(map1[*itr1] && map2[*itr1])
+                ans.push_back(*itr1);
+        }
+        return ans;
+    }
+};
