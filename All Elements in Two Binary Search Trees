@@ -1,0 +1,30 @@
+class Solution {
+public:
+
+    void add_elements(priority_queue<int, vector<int>, greater<int>>& pq, TreeNode* root)
+    {
+        if(root==NULL)
+            return;
+        pq.push(root->val);
+        add_elements(pq, root->left);
+        add_elements(pq, root->right);
+    }
+    
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
+        if(root1==NULL && root2==NULL)
+        {
+            vector<int> v;
+            return v;
+        }
+        priority_queue<int, vector<int>, greater<int>> pq;
+        add_elements(pq, root1);
+        add_elements(pq, root2);
+        vector<int> ans;
+        while(!pq.empty())
+        {
+            ans.push_back(pq.top());
+            pq.pop();
+        }
+        return ans;
+    }
+};
