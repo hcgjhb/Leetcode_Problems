@@ -1,0 +1,24 @@
+class Solution {
+public:
+
+    int getPower(int n)
+    {
+        if(n==1)
+            return 0;
+        if(n%2==0)
+            return 1+getPower(n/2);
+        else
+            return 1+getPower(3*n + 1);
+    }
+
+    int getKth(int lo, int hi, int k) {
+        vector<pair<int, int>> result;
+        for(int i=lo;i<=hi;i++)
+        {
+            int a = getPower(i);
+            result.push_back({a, i});
+        }
+        sort(result.begin(), result.end());
+        return result[k-1].second;
+    }
+};
